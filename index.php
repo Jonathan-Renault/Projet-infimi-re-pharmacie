@@ -10,6 +10,19 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
 
     $result = selectbyname($name);
 
+    if (strlen($name) <= 1){
+        $erreur = 'Nom trop court';
+    }
+    else if (strlen($name) > 50){
+        $erreur = 'Nom trop long';
+    }
+    if (strlen($mdp) < 5){
+        $erreur = 'Mot de passe trop court';
+    }
+    else if (strlen($mdp) > 255){
+        $erreur = 'Mot de passe trop long';
+    }
+
     if (!empty($result)) {
         if (password_verify($mdp,$result['mdp'])) {
 
@@ -22,7 +35,7 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
                 header("Location: nouveau_mdp.php");
             }
             else {
-                header("Location: accueil.php");
+                header("Location: Bas.php");
             }
         }
         else {
@@ -45,5 +58,6 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
         <label for="mdp">Mot de passe :</label><br/>
         <input type="password" id="mdp" name="user_mdp" required>
     </div>
+    <?php if (!empty($erreur)) {echo $erreur;} ?>
     <input type="submit" value="Connexion">
 </form>
