@@ -14,6 +14,16 @@ include "assets/inc/header.php";
                 <h4>Bas de contention</h4>
 
                 <form>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Coté :</label> <span class="etoile">*</span>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option selected>Les deux</option>
+                                <option>Droite</option>
+                                <option>Gauche</option>
+                            </select>
+                        </div>
+
                     <div class="form-group">
                         <label for="">Tour de cheville</label> <span class="etoile">*  </span><i class="fas fa-info-circle">
                             <img src="assets/img/mesure-bas.jpg" alt="mesure bas"> </i> <span>A</span>
@@ -26,7 +36,6 @@ include "assets/inc/header.php";
                             <img src="assets/img/mesure-bas.jpg" alt="mesure bas"> </i> <span>C</span>
                         <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="60 cm">
                         <p>A prendre sous le pli fessier</p>
-
                     </div>
 
                     <div class="form-group">
