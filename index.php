@@ -1,5 +1,15 @@
 <?php
 include "assets/inc/header.php";
+?>
+
+
+    <div ng-controller="FormController">
+
+        <section id="section-timesheet">
+
+            <h1>Connexion</h1>
+
+        </section>
 
 
 
@@ -8,11 +18,5 @@ include "assets/inc/header.php";
 
 
 
-
-
-
-
-
-
-
+<?php
 include "assets/inc/footer.php";
