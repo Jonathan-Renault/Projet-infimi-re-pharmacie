@@ -3,8 +3,6 @@ require 'assets/inc/pdo.php';
 require 'assets/inc/function.php';
 require 'assets/inc/request.php';
 
-print_r($_SESSION);
-
 if (!empty($_POST['mdp1']) and !empty($_POST['mdp2'])){
 
     $mdp1 = trim(strip_tags($_POST['mdp1']));
