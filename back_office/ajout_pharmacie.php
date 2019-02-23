@@ -20,30 +20,30 @@ if (!empty($_POST['submitted'])){
     if(!empty($nom)) {
         if(strlen($nom) < 3 ) {
             $error['nom'] = 'Ce champs est trop court.(minimum 3 caractères)';
-        } elseif(strlen($nom) > 20) {
+        } elseif(strlen($nom) > 50) {
             $error['nom'] = 'Ce champs est trop long.(maximum 20 caractères)';
         } $inscrit = 1;
     } else {
         $error['nom'] = 'Veuillez renseigner ce champs';
     }
-    if(!empty($prenom)) {
-        if(strlen($prenom) < 3 ) {
+    if(!empty($adresse)) {
+        if(strlen($adresse) < 3 ) {
             $error['adresse'] = 'Ce champs est trop court.(minimum 3 caractères)';
-        } elseif(strlen($prenom) > 20) {
+        } elseif(strlen($adresse) > 50) {
             $error['adresse'] = 'Ce champs est trop long.(maximum 20 caractères)';
         } $inscrit .= 2;
     }
     if(!empty($mail)) {
         if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-            $error['mail'] = 'Ceci n\'est pas une adresse mail.';
+            $error['email'] = 'Ceci n\'est pas une adresse mail.';
         } else {
             $testmail = testmail($mail);
             if (!empty($testmail)) {
-                $error['mail'] =  'Cet email est déjà pris';
+                $error['email'] =  'Cet email est déjà pris';
             } $inscrit .= 3;
         }
     } else {
-        $error['mail'] = 'Veuillez renseigner ce champs';
+        $error['email'] = 'Veuillez renseigner ce champs';
     }
 
 
@@ -79,7 +79,7 @@ require "assets/inc/sidebar.php";
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name ="email" class="form-control"  placeholder="Email"value="<?php if(!empty($_POST['nom'])) { echo $_POST['email']; } ?>">
-                    <span class="error"><?php spanError($error,'prenom');?></span>
+                    <span class="error"><?php spanError($error,'email');?></span>
                 </div>
 
             </div>

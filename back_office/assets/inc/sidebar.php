@@ -50,12 +50,6 @@
                                 <p>Ajout</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Modification</p>
-                            </a>
-                        </li>
                     </ul>
 
 

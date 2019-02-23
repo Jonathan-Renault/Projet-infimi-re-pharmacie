@@ -11,6 +11,7 @@ require "../assets/inc/fonctions.php";
 
 $error = array();
 
+
 if (!empty($_POST['submitted'])){
 
     $prenom   = clean('prenom');
@@ -21,7 +22,7 @@ if (!empty($_POST['submitted'])){
             $error['nom'] = 'Ce champs est trop court.(minimum 3 caractères)';
         } elseif(strlen($nom) > 20) {
             $error['nom'] = 'Ce champs est trop long.(maximum 20 caractères)';
-        } $inscrit = 1;
+        }
     } else {
         $error['nom'] = 'Veuillez renseigner ce champs';
     }
@@ -30,13 +31,13 @@ if (!empty($_POST['submitted'])){
             $error['prenom'] = 'Ce champs est trop court.(minimum 3 caractères)';
         } elseif(strlen($prenom) > 20) {
             $error['prenom'] = 'Ce champs est trop long.(maximum 20 caractères)';
-        } $inscrit .= 2;
+        }
     }
 
 
     if (count($error)==0) {
 
-        insert_inscription($prenom ,$nom);
+        insert_inscription( $prenom, $nom);
         header("Location: dashboard.php");
     }
 
@@ -59,7 +60,7 @@ require "assets/inc/sidebar.php";
                 </div>
                 <div class="form-group">
                     <label for="prenom">Prenom</label>
-                    <input type="text" name ="prenom" class="form-control"  placeholder="Prenom"value="<?php if(!empty($_POST['nom'])) { echo $_POST['nom']; } ?>">
+                    <input type="text" name ="prenom" class="form-control"  placeholder="Prenom"value="<?php if(!empty($_POST['prenom'])) { echo $_POST['prenom']; } ?>">
                     <span class="error"><?php spanError($error,'prenom');?></span>
                 </div>
 

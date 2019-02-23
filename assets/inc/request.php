@@ -45,9 +45,28 @@ function delete($nomTable,$id){
 }
 function testmail($mail) {
     global $pdo;
-    $sql="SELECT * FROM pharmacie WHERE mail =:mail "; //requete à modifier
+    $sql="SELECT * FROM pharmacie WHERE email =:mail "; //requete à modifier
     $query= $pdo -> prepare($sql) ;//preparer la requete
     $query-> bindvalue(':mail' , $mail , PDO::PARAM_STR );
     $query-> execute(); //execute la requete
     return $query -> fetch(); // $a variable retourner / fetchall() pour les requetes avec multiple array sinon fetch()
+}
+function modif_pharmacie($nom,$adresse,$mail,$id){
+    global $pdo;
+
+    $sql = "UPDATE pharmacie SET nom = :nom ,adresse = :adresse, email = :mail WHERE id = :id";
+    $query= $pdo -> prepare($sql) ;
+    $query-> bindvalue(':nom' , $nom , PDO::PARAM_STR );
+    $query-> bindvalue(':adresse' , $adresse , PDO::PARAM_STR );
+    $query-> bindvalue(':mail' , $mail , PDO::PARAM_STR );
+    $query -> bindValue(':id',$id,PDO::PARAM_INT);
+    return $query-> execute();
+}
+function phramacie_unique($id){
+    global $pdo;
+    $sql= "SELECT * FROM pharmacie WHERE id=:id";
+    $query = $pdo -> prepare($sql);
+    $query->bindValue(':id',$id, PDO::PARAM_STR);
+    $query -> execute();
+    return $query -> fetch();
 }
