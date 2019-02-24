@@ -59,6 +59,6 @@ function isAdmin($value,$value2){
         $retour = false;
     }
     if ($retour == false){
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
 }
