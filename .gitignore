@@ -115,3 +115,8 @@ modules.xml
  .idea/sonarlint
 
 # End of https://www.gitignore.io/api/macos,phpstorm+all
+
+
+node_modules
+node_modules/
+node_modules/*

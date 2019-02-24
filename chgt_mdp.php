@@ -7,16 +7,16 @@ include "assets/inc/header.php";
 
             <div class="col-md-8" style="margin-bottom: 30vh;">
 
-                <h2>Connexion</h2>
+                <h2>Changement de Mot de passe</h2>
 
                 <form>
                     <div class="form-group">
-                        <label for="">Nom :</label>
+                        <label for="">Mot de passe :</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
 
                     <div class="form-group">
-                        <label for="">Mot de passe :</label>
+                        <label for="">Confirmation du mot de passe :</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
 
