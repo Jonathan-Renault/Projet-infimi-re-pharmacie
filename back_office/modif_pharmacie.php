@@ -1,13 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 17359
- * Date: 23/02/2019
- * Time: 20:48
- */
+
 require "../assets/inc/pdo.php";
 require "../assets/inc/request.php";
-require "../assets/inc/fonctions.php";
+require "../assets/inc/function.php";
+
+isAdmin($_SESSION['nom'],$_SESSION['status']);
 
 $error = array();
 if(!empty($_GET['id']) && is_numeric($_GET['id'])) {

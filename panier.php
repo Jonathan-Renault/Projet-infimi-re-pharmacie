@@ -45,12 +45,12 @@ include "assets/inc/header.php";
                         <input type="number" class="form-control" id="exampleFormControlInput1">
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Ordonnance :</label>
-                        <input type="file" class="" id="exampleFormControlInput1">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFileLang">
+                        <label class="custom-file-label" for="customFileLang">Ordonnance...</label>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Valider</button>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 5vh">Valider</button>
 
                 </form>
 

@@ -2,6 +2,7 @@
 function insert_inscription( $prenom, $nom){
     global $pdo;
 
+  
     $mdp   = "e-orthesis";
 
     $sql = "INSERT INTO `user`( `prenom`,`nom`,`mdp`) VALUES (:prenom , :nom , :mdp)";
@@ -9,7 +10,7 @@ function insert_inscription( $prenom, $nom){
     $query-> bindvalue(':nom' , $nom , PDO::PARAM_STR );
     $query-> bindvalue(':prenom' , $prenom , PDO::PARAM_STR );
     $query-> bindvalue(':mdp' , $mdp , PDO::PARAM_STR );
-
+  
     return $query-> execute();
 }
 function insert_pharmacie($nom , $adresse, $mail){
@@ -64,3 +65,26 @@ function phramacie_unique($id){
     $query -> execute();
     return $query -> fetch();
 }
+
+
+function selectbyname($name){
+    global $pdo;
+
+    $sql = "SELECT * FROM user WHERE nom = :nom";
+    $query = $pdo -> prepare($sql);
+    $query->bindValue(':nom', $name, PDO::PARAM_STR);
+    $query -> execute();
+    $result = $query -> fetch();
+    return $result;
+}
+
+function insertnewmdp($name,$mdp){
+    global $pdo;
+
+    $sql = "UPDATE user SET mdp = :mdp WHERE nom = :nom; UPDATE user SET mdp_modif = 'yes' WHERE nom = :nom;";
+    $query = $pdo -> prepare($sql);
+    $query->bindValue(':nom', $name, PDO::PARAM_STR);
+    $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+    $query -> execute();
+}
+
