@@ -3,22 +3,33 @@ require 'assets/inc/pdo.php';
 require 'assets/inc/function.php';
 require 'assets/inc/request.php';
 
+include "assets/inc/header.php";
+
 if (!empty($_POST)) {
 
     $erreur = array();
 
-    $_POST['mollet'] = trim(strip_tags($_POST['mollet']));
+    $_POST['cote'] = trim(strip_tags($_POST['cote']));
     $_POST['cheville'] = trim(strip_tags($_POST['cheville']));
+    $_POST['mollet'] = trim(strip_tags($_POST['mollet']));
     $_POST['hauteur'] = trim(strip_tags($_POST['hauteur']));
     $_POST['pied'] = trim(strip_tags($_POST['pied']));
     $_POST['force'] = trim(strip_tags($_POST['force']));
+    $_POST['quantite'] = trim(strip_tags($_POST['quantite']));
+    $_POST['commentaire'] = trim(strip_tags($_POST['commentaire']));
+
+    if (!empty($_POST['cote']) and is_string($_POST['cote'])){
+        if ($_POST['cote'] != 'Les deux' AND $_POST['cote'] != 'Droite' AND $_POST['cote'] != 'Gauche'){
+            $erreur['cote'] = 'Fausse valeur';
+        }
+    }
 
     if (!empty($_POST['cheville']) and is_numeric($_POST['cheville'])){
 
         $erreur = borneTaille($_POST['cheville'],'cheville',5,100,$erreur);
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['cheville'] = 'La valeur doit être un nombre entier';
     }
 
     if (!empty($_POST['mollet']) and is_numeric($_POST['mollet'])){
@@ -26,7 +37,7 @@ if (!empty($_POST)) {
         $erreur = borneTaille($_POST['mollet'],'mollet',5,100,$erreur);
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['mollet'] = 'La valeur doit être un nombre entier';
     }
 
     if (!empty($_POST['hauteur']) and is_numeric($_POST['hauteur'])){
@@ -34,7 +45,7 @@ if (!empty($_POST)) {
         $erreur = borneTaille($_POST['hauteur'],'hauteur',5,100,$erreur);
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['hauteur'] = 'La valeur doit être un nombre entier';
     }
 
     if (!empty($_POST['pied']) and is_string($_POST['pied'])){
@@ -43,7 +54,7 @@ if (!empty($_POST)) {
         }
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['pied'] = 'La valeur doit être un nombre entier';
     }
 
     if (!empty($_POST['force']) and is_numeric($_POST['force'])){
@@ -51,7 +62,7 @@ if (!empty($_POST)) {
         $erreur = borneTaille($_POST['force'],'force',1,4,$erreur);
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['force'] = 'La valeur doit être un nombre entier';
     }
 
     if (!empty($_POST['quantite']) and is_numeric($_POST['quantite'])){
@@ -59,7 +70,7 @@ if (!empty($_POST)) {
         $erreur = borneTaille($_POST['quantite'],'quantite',1,10,$erreur);
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['quantite'] = 'La valeur doit être un nombre entier';
     }
 
     if (isset($_POST['commentaire']) and is_string($_POST['commentaire'])){
@@ -67,7 +78,7 @@ if (!empty($_POST)) {
         $erreur = borneTaille($_POST['commentaire'],'commentaire',0,1024,$erreur);
     }
     else {
-        $erreur = 'La valeur doit être un nombre entier';
+        $erreur['commentaire'] = 'La valeur doit être un nombre entier';
     }
 
     if (!empty($erreur)) {
@@ -80,6 +91,7 @@ if (!empty($_POST)) {
             $i++;
         }
 
+        $_SESSION['chaussette'.$i]['cote'] = $_POST['cote'];
         $_SESSION['chaussette'.$i]['cheville'] = $_POST['cheville'];
         $_SESSION['chaussette'.$i]['mollet'] = $_POST['mollet'];
         $_SESSION['chaussette'.$i]['hauteur'] = $_POST['hauteur'];
@@ -88,24 +100,23 @@ if (!empty($_POST)) {
         $_SESSION['chaussette'.$i]['quantite'] = $_POST['quantite'];
         $_SESSION['chaussette'.$i]['commentaire'] = $_POST['commentaire'];
     }
-
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
-
-    /*foreach ($_SESSION as $index => $value ){
-
-        if (substr($index, 0, 10) == 'chaussette'){
-            echo 'ça marche - ';
-        }
-    }*/
 }
 
 ?>
 
 <form action="mesureChaussette.php" method="POST">
     <div class="form-group">
-        <label for="">Tour de cheville</label> <span class="etoile">*  </span><i class="fas fa-info-circle">
+        <label for="exampleFormControlSelect1">Coté :</label> <span class="etoile">*</span>
+        <select class="form-control" id="exampleFormControlSelect1" name="cote">
+            <option selected>Les deux</option>
+            <option>Droite</option>
+            <option>Gauche</option>
+        </select>
+        <?php if (!empty($erreur['cote'])) {echo $erreur['cote'];} ?>
+    </div>
+
+    <div class="form-group">
+                <label for="">Tour de cheville</label> <span class="etoile">*  </span><i class="fas fa-info-circle">
             <img src="assets/img/mesure-bas.jpg" alt="mesure bas"> </i> <span>A</span>
         <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="18 cm" name="cheville">
         <?php if (!empty($erreur['cheville'])) {echo $erreur['cheville'];} ?>
@@ -163,3 +174,6 @@ if (!empty($_POST)) {
     <button class="btn btn-primary" type="submit">Valider</button>
 
 </form>
+
+<?php
+include "assets/inc/footer.php";

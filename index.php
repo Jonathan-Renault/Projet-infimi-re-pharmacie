@@ -3,6 +3,16 @@ require 'assets/inc/pdo.php';
 require 'assets/inc/function.php';
 require 'assets/inc/request.php';
 
+include "assets/inc/header.php";
+
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
+if (!empty($_SESSION['nom'])){
+    header("Location: mesureBas.php");
+}
+
 if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
 
     $name = strtolower(trim(strip_tags($_POST['user_name'])));
@@ -35,7 +45,7 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
                 header("Location: nouveau_mdp.php");
             }
             else {
-                header("Location: mesureChaussette.php");
+                header("Location: mesureBas.php");
             }
         }
         else {
@@ -46,6 +56,7 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
         echo 'Le nom saisi est invalide.';
     }
 }
+
 
 ?>
 
@@ -61,3 +72,6 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
     <?php if (!empty($erreur)) {echo $erreur;} ?>
     <input type="submit" value="Connexion">
 </form>
+
+<?
+include "assets/inc/footer.php";

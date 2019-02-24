@@ -18,7 +18,7 @@ if (!empty($_POST['mdp1']) and !empty($_POST['mdp2'])){
         else {
             $mdp1 = password_hash($mdp1, PASSWORD_DEFAULT);
             insertnewmdp($_SESSION['nom'],$mdp1);
-            header("Location: panier.php");
+            header("Location: mesureBas.php");
         }
     }
     else {
