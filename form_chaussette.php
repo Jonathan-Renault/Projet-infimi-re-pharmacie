@@ -1,5 +1,6 @@
 <?php
 include "assets/inc/header.php";
+include "assets/inc/rubrique.php";
 ?>
 
 
