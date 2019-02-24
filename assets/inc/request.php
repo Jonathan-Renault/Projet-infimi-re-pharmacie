@@ -1,5 +1,4 @@
 <?php
-
 function insert_inscription( $prenom, $nom){
     global $pdo;
     $mdp   = "e-orthesis";
@@ -80,3 +79,4 @@ function insertnewmdp($name,$mdp){
     $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
     $query -> execute();
 }
+

@@ -1,4 +1,5 @@
 <?php
+
 require 'assets/inc/pdo.php';
 require 'assets/inc/function.php';
 require 'assets/inc/request.php';
@@ -15,6 +16,38 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
     $mdp = trim(strip_tags($_POST['user_mdp']));
 
     $result = selectbyname($name);
+
+include "assets/inc/header.php";
+?>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8" style="margin-bottom: 30vh;">
+
+                <h2>Connexion</h2>
+
+                <form>
+                    <div class="form-group">
+                        <label for="">Nom :</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Mot de passe :</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Valider</button>
+
+                </form>
+
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+
 
     if (strlen($name) <= 1){
         $erreur = 'Nom trop court';
@@ -69,5 +102,6 @@ if (!empty($_POST['user_name']) and !empty($_POST['user_mdp'])){
     <input type="submit" value="Connexion">
 </form>
 
-<?
+
+<?php
 include "assets/inc/footer.php";
