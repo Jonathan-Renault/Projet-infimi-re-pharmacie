@@ -1,4 +1,5 @@
 <?php
+
 include('../assets/inc/pdo.php');
 include('../assets/inc/function.php');
 include('../assets/inc/request.php');

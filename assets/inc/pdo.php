@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+session_start();
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=e-orthesis', "root", "", array(
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
@@ -8,4 +9,5 @@ try {
 }
 catch (PDOException $e) {
     echo 'Erreur de connexion : ' . $e->getMessage();
+
 }

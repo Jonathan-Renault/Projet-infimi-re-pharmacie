@@ -1,21 +1,27 @@
 <?php
 function insert_inscription( $prenom, $nom){
     global $pdo;
+
+  
     $mdp   = "e-orthesis";
+
     $sql = "INSERT INTO `user`( `prenom`,`nom`,`mdp`) VALUES (:prenom , :nom , :mdp)";
     $query= $pdo -> prepare($sql) ;
     $query-> bindvalue(':nom' , $nom , PDO::PARAM_STR );
     $query-> bindvalue(':prenom' , $prenom , PDO::PARAM_STR );
     $query-> bindvalue(':mdp' , $mdp , PDO::PARAM_STR );
+  
     return $query-> execute();
 }
 function insert_pharmacie($nom , $adresse, $mail){
     global $pdo;
+
     $sql = "INSERT INTO `pharmacie`( `nom`,`adresse`,`email`) VALUES (:nom , :adresse , :mail)";
     $query= $pdo -> prepare($sql) ;
     $query-> bindvalue(':nom' , $nom , PDO::PARAM_STR );
     $query-> bindvalue(':adresse' , $adresse , PDO::PARAM_STR );
     $query-> bindvalue(':mail' , $mail , PDO::PARAM_STR );
+
     return $query-> execute();
 }
 function requeteListe($nomTable){
@@ -42,6 +48,7 @@ function testmail($mail) {
 }
 function modif_pharmacie($nom,$adresse,$mail,$id){
     global $pdo;
+
     $sql = "UPDATE pharmacie SET nom = :nom ,adresse = :adresse, email = :mail WHERE id = :id";
     $query= $pdo -> prepare($sql) ;
     $query-> bindvalue(':nom' , $nom , PDO::PARAM_STR );
@@ -58,6 +65,7 @@ function phramacie_unique($id){
     $query -> execute();
     return $query -> fetch();
 }
+
 
 function selectbyname($name){
     global $pdo;
