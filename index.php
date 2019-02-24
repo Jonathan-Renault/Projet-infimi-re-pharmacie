@@ -5,10 +5,6 @@ require 'assets/inc/request.php';
 
 include "assets/inc/header.php";
 
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
-
 if (!empty($_SESSION['nom'])){
     header("Location: mesureBas.php");
 }

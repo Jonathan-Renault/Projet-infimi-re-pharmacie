@@ -1,7 +1,7 @@
 <?php
 require "../assets/inc/pdo.php";
 require "../assets/inc/request.php";
-require "../assets/inc/fonctions.php";
+require "../assets/inc/function.php";
 
 isAdmin($_SESSION['nom'],$_SESSION['status']);
 

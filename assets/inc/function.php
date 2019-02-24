@@ -1,5 +1,21 @@
 <?php
 
+function debug($array){
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+}
+function clean($key){
+    return trim(strip_tags($_POST[$key]));
+}
+function cleanGet($key){
+    return trim(strip_tags($_GET[$key]));
+}
+function spanError($error, $key){
+    if(!empty($error[$key])) {
+        echo $error[$key]; }
+}
+
 function ifsessionExists($nom){
 
     if(!empty($_SESSION[$nom])){
@@ -43,6 +59,6 @@ function isAdmin($value,$value2){
         $retour = false;
     }
     if ($retour == false){
-        die;
+        header("Location: index.php");
     }
 }
